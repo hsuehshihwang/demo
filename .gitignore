@@ -1,0 +1,19 @@
+# Encryption key (NEVER commit)
+.env
+
+# Original video files (do NOT commit)
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Encrypted video files (commit these)
+!*.mp4.enc
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db

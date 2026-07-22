@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Videos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="modal-overlay" class="modal-overlay">
+    <div class="modal">
+        <h2>Enter Password</h2>
+        <form id="password-form">
+            <input type="password" id="password-input" placeholder="Password" autofocus autocomplete="off">
+            <button type="submit" id="submit-btn">Unlock</button>
+        </form>
+        <p id="error-msg" class="error-msg"></p>
+    </div>
+</div>
+
+<div id="gallery" class="gallery hidden">
+    <header class="gallery-header">
+        <h1>Demo Videos</h1>
+        <p id="status-bar" class="status-bar"></p>
+    </header>
+    <div id="video-grid" class="video-grid"></div>
+</div>
+
+<div id="player-overlay" class="player-overlay hidden">
+    <div class="player-container">
+        <button id="close-player" class="close-player">&times;</button>
+        <video id="video-player" controls></video>
+        <p id="decrypt-status" class="decrypt-status"></p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
