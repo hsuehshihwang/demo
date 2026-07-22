@@ -202,6 +202,7 @@
 
     // --- Play video ---
     async function playVideo(file, password) {
+        window.location.hash = "#video=" + file.replace(/\.enc$/, "");
         playerOverlay.classList.remove("hidden");
         decryptStatus.innerHTML = '<span class="spinner"></span> Decrypting...';
         videoPlayer.removeAttribute("src");
@@ -216,6 +217,20 @@
         } catch (e) {
             decryptStatus.textContent = "Decryption failed: " + e.message;
         }
+    }
+
+    // --- Parse URL hash for #video=xxx.mp4 ---
+    function getHashVideo() {
+        var hash = window.location.hash;
+        if (hash && hash.indexOf("#video=") === 0) {
+            var file = hash.substring(7);
+            // Auto-append .enc if not already there
+            if (file.indexOf(".enc") === -1) {
+                file = file + ".enc";
+            }
+            return decodeURIComponent(file);
+        }
+        return null;
     }
 
     // --- Event handlers ---
@@ -241,8 +256,27 @@
         }
 
         modalOverlay.classList.add("hidden");
-        gallery.classList.remove("hidden");
-        await buildGallery(pw);
+
+        var hashFile = getHashVideo();
+        if (hashFile) {
+            // Direct play: show player with decrypted video, user clicks play
+            playerOverlay.classList.remove("hidden");
+            decryptStatus.innerHTML = '<span class="spinner"></span> Decrypting...';
+            videoPlayer.removeAttribute("src");
+            videoPlayer.load();
+            try {
+                var blob = await decryptVideo(VIDEO_DIR + hashFile, pw);
+                var url = URL.createObjectURL(blob);
+                videoPlayer.src = url;
+                decryptStatus.textContent = "Ready. Click play.";
+            } catch (e) {
+                decryptStatus.textContent = "Decryption failed: " + e.message;
+            }
+        } else {
+            // Normal: show gallery
+            gallery.classList.remove("hidden");
+            await buildGallery(pw);
+        }
     });
 
     closePlayer.addEventListener("click", function () {
@@ -251,6 +285,10 @@
         videoPlayer.removeAttribute("src");
         if (videoPlayer.src) URL.revokeObjectURL(videoPlayer.src);
         decryptStatus.textContent = "";
+        history.replaceState(null, "", window.location.pathname);
+        if (getHashVideo()) {
+            gallery.classList.remove("hidden");
+        }
     });
 
     playerOverlay.addEventListener("click", function (e) {
