@@ -20,6 +20,10 @@
     "size": 6341936
   },
   {
+    "file": "demo_different_user_login_authority.mp4.enc",
+    "size": 1925360
+  },
+  {
     "file": "demo_fw_build_time.mp4.enc",
     "size": 2769760
   },
@@ -30,6 +34,10 @@
   {
     "file": "demo_gui_login_expired.mp4.enc",
     "size": 777424
+  },
+  {
+    "file": "demo_hamburger_menu.mp4.enc",
+    "size": 2762112
   },
   {
     "file": "demo_login.mp4.enc",
