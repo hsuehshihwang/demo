@@ -1,5 +1,9 @@
 [
   {
+    "file": "demo-huawei-olt-management-server_cli-generator.mp4.enc",
+    "size": 6033744
+  },
+  {
     "file": "demo_admin_pwd.mp4.enc",
     "size": 4830640
   },
@@ -38,6 +42,10 @@
   {
     "file": "demo_restore_default.mp4.enc",
     "size": 19611024
+  },
+  {
+    "file": "demo_wifi-ssid-channel-2g.mp4.enc",
+    "size": 196992
   },
   {
     "file": "test_sample.mp4.enc",
